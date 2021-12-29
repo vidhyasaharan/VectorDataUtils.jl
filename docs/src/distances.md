@@ -6,6 +6,7 @@ The following distances measures are provided:
 ```@docs
 l2dist
 sql2dist
+l1dist
 ```
 
 ## Mahalanobis Distance
