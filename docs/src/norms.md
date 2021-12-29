@@ -10,3 +10,6 @@ l2norm
 ```
 
 ## Other ``l_p`` Spaces
+```@docs
+l1norm
+```
