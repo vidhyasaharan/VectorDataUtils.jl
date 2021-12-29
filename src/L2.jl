@@ -87,7 +87,7 @@ sql2norm(a::AbstractVector{T}) where {T} = l2inner(a)
 """
     l2norm(a)
 
-Compute the l2 norm of a real or complex vector `a`.
+Compute the l2 norm of a real valued vector `a`.
 """
 l2norm(a::AbstractVector{T}) where {T} = sqrt(l2inner(a))
 
