@@ -5,6 +5,17 @@
 Computes the inner product in the l2 vector space (dot product) between Real or Complex vectors `a` and `b`. The lenghts of `a` and `b` must match.
 
 See also [`l2norm`](@ref), [`l2dist`](@ref), [`sql2norm`](@ref), [`sql2dist`](@ref).
+
+# Example
+```jldoctest
+a = [1,2,3]
+b = [2,0,4]
+l2inner(a,b)
+
+# output
+
+sum(a.*b)
+```
 """
 function l2inner(a::AbstractVector{T}, b::AbstractVector{T}) where {T}
     s = zero(T)
@@ -109,4 +120,3 @@ function mulavx!(a::AbstractVector{T}, b::AbstractVector{T}) where {T}
         a[i] *= b[i]
     end
 end
-

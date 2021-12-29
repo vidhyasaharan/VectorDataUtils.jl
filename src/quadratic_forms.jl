@@ -16,7 +16,7 @@ end
 """
     mahaldist(x,y,A)
 
-Compute the Mahalanobis distance between two real vectors `x` and `y` given a square matrix `A`. Mahalanobis distance is given by ``(x-y)'A(x-y)``. Dimensions of `x`, `y` and `A` must match.
+Compute the Mahalanobis distance between two real vectors `x` and `y` given a square matrix `A`. Dimensions of `x`, `y` and `A` must match. Mahalanobis distance is given by ``(x-y)'A(x-y)``.
 """
 function mahaldist(x::AbstractVector{T}, y::AbstractVector{T}, A::AbstractMatrix{T}) where {T}
     s = zero(T)
