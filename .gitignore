@@ -1,3 +1,4 @@
 .github/workflows/TagBot.yml
 Manifest.toml
 test/Manifest.toml
+test/benchmark_speed.jl
