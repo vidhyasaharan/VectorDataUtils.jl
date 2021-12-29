@@ -1,4 +1,10 @@
 #Dot product using LoopVectorization (real ⋅ real)
+"""
+    l2inner(a,b)
+    l2inner(a)
+
+Computes the inner product in the l2 vector space (dot product) between Real or Complex vectors `a` and `b`. The lenghts of `a` and `b` must match.
+"""
 function l2inner(a::AbstractVector{T}, b::AbstractVector{T}) where {T}
     s = zero(T)
     @turbo for i ∈ eachindex(a,b)
