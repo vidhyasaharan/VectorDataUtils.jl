@@ -2,7 +2,7 @@
 
 The following distances measures are provided:
 
-## Distances induced in ``l_p`` Spaces
+## Distances induced in ``/mathscr{l}_p`` Spaces
 ```@docs
 l2dist
 sql2dist

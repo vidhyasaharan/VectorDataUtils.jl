@@ -1,6 +1,8 @@
 using Documenter
 using VectorDataUtils
 
+DocMeta.setdocmeta!(VectorDataUtils, :DocTestSetup, :(using VectorDataUtils); recursive=true)
+
 makedocs(
     sitename = "VectorDataUtils",
     format = Documenter.HTML(),
