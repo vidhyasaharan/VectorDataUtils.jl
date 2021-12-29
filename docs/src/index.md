@@ -7,5 +7,5 @@ Most of the routines implemented in VectorDataUtils.jl do not include any form o
 
 ## Outline
 Currently VectorDataUtils.jl implements routines for:
-- [Norms and Inner Products](norms)
-- [Distances](distances)
+- [Norms and Inner Products](norms.md)
+- [Distances](distances.md)

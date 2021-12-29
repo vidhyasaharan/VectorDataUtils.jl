@@ -2,11 +2,11 @@
 
 The following elementary vector norms and inner products are provided:
 
-## ``\mathscr{l}_2`` Spaces
+## ``l_2`` Spaces
 ```@docs
 l2inner
 sql2norm
 l2norm
 ```
 
-## Other ``\mathscr{l}_p`` Spaces
+## Other ``l_p`` Spaces
