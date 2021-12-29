@@ -4,7 +4,10 @@ using VectorDataUtils
 makedocs(
     sitename = "VectorDataUtils",
     format = Documenter.HTML(),
-    modules = [VectorDataUtils]
+    modules = [VectorDataUtils],
+    pages = [
+        "Home" => "index.md",
+    ],
 )
 
 # Documenter can also automatically deploy documentation to gh-pages.
