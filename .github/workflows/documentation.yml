@@ -21,13 +21,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # If authenticating with GitHub Actions token
           DOCUMENTER_KEY: ${{ secrets.DOCUMENTER_KEY }} # If authenticating with SSH deploy key
-        # run: julia --project=docs/ docs/make.jl
-        run: |
-            julia --project=docs -e '
-              using Documenter: DocMeta, doctest
-              using VectorDataUtils
-              DocMeta.setdocmeta!(VectorDataUtils, :DocTestSetup, :(using VectorDataUtils); recursive=true)
-              doctest(VectorDataUtils)' docs/make.jl
+        run: julia --project=docs/ docs/make.jl
+        # run: |
+        #     julia --project=docs -e '
+        #       using Documenter: DocMeta, doctest
+        #       using VectorDataUtils
+        #       DocMeta.setdocmeta!(VectorDataUtils, :DocTestSetup, :(using VectorDataUtils); recursive=true)
+        #       doctest(VectorDataUtils)' docs/make.jl
       # - name: Run Doctests
       #   run: |
       #       julia --project=docs -e '
