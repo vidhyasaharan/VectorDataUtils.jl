@@ -2,3 +2,4 @@
 Manifest.toml
 test/Manifest.toml
 test/benchmark_speed.jl
+docs/build/
