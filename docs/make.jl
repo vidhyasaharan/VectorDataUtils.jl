@@ -11,8 +11,9 @@ makedocs(
     pages = [
         "Home" => "index.md",
         "Contents" => [
-            "norms.md"
-            "distances.md"
+            "norms.md",
+            "distances.md",
+            "utilities.md"
         ],
     ],
 )
