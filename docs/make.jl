@@ -7,6 +7,10 @@ makedocs(
     modules = [VectorDataUtils],
     pages = [
         "Home" => "index.md",
+        "Contents" => [
+            "norms.md"
+            "distances.md"
+        ],
     ],
 )
 

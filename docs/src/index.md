@@ -5,3 +5,7 @@ VectorDataUtils.jl provides a number of basic vector operation and data processi
 ## Note
 Most of the routines implemented in VectorDataUtils.jl do not include any form of checks on the inputs. It is the users responsibility to ensure that array sizes and element types are appropriate.
 
+## Outline
+Currently VectorDataUtils.jl implements routines for:
+- [Norms and Inner Products](norms)
+- [Distances](distances)
