@@ -14,7 +14,7 @@ l2inner(a,b)
 
 # output
 
-sum(a.*b)
+14
 ```
 """
 function l2inner(a::AbstractVector{T}, b::AbstractVector{T}) where {T}
