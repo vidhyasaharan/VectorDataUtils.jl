@@ -1,9 +1,10 @@
 #Dot product using LoopVectorization (real ⋅ real)
 """
     l2inner(a,b)
-    l2inner(a)
 
 Computes the inner product in the l2 vector space (dot product) between Real or Complex vectors `a` and `b`. The lenghts of `a` and `b` must match.
+
+See also [`l2norm`](@ref), [`l2dist`](@ref), [`sql2norm`](@ref), [`sql2dist`](@ref).
 """
 function l2inner(a::AbstractVector{T}, b::AbstractVector{T}) where {T}
     s = zero(T)
@@ -52,6 +53,11 @@ end
 
 
 #L2 Norm square using LoopVectorization (real)
+"""
+    l2inner(a)
+
+Computes the inner product in the l2 vector space (dot product) of the Real or Complex vectors `a` with itself. i.e., the Squared l2 norm of `a`. This is identical to calling `sql2norm(a)`.
+"""
 function l2inner(a::AbstractVector{T}) where {T}
     s = zero(T)
     @turbo for i ∈ eachindex(a)
@@ -60,11 +66,26 @@ function l2inner(a::AbstractVector{T}) where {T}
     return s
 end
 
+"""
+    sql2norm(a)
+
+Compute the square of the l2 norm of a real or complex vector `a`. This is identical to calling `l2inner(a)`.
+"""
 sql2norm(a::AbstractVector{T}) where {T} = l2inner(a)
 
+"""
+    l2norm(a)
+
+Compute the l2 norm of a real or complex vector `a`.
+"""
 l2norm(a::AbstractVector{T}) where {T} = sqrt(l2inner(a))
 
 #L2 Distance square using LoopVectorization (real)
+"""
+    sql2dist(a,b)
+
+Compute the square of the l2 distance between two real vectors `a` and `b`. The lengths of `a` and `b` must match.
+"""
 function sql2dist(a::AbstractVector{T}, b::AbstractVector{T}) where {T}
     s = zero(T)
     @turbo for i ∈ eachindex(a,b)
@@ -74,6 +95,11 @@ function sql2dist(a::AbstractVector{T}, b::AbstractVector{T}) where {T}
     return s
 end
 
+"""
+    l2dist(a,b)
+
+Compute the l2 distance between two real vectors `a` and `b`. The lengths of `a` and `b` must match.
+"""
 l2dist(a::AbstractVector{T}, b::AbstractVector{T}) where {T} = sqrt(sql2dist(a,b))
 
 
