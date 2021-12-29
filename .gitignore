@@ -1,1 +1,3 @@
 .github/workflows/TagBot.yml
+Manifest.toml
+test/Manifest.toml
