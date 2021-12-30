@@ -80,7 +80,7 @@ end
 """
     sql2norm(a)
 
-Compute the square of the l2 norm of a real or complex vector `a`. This is identical to calling `l2inner(a)`.
+Compute the square of the l2 norm of a real valued vector `a`. This is identical to calling `l2inner(a)`.
 """
 sql2norm(a::AbstractVector{T}) where {T} = l2inner(a)
 
