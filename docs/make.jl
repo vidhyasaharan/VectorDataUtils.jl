@@ -13,6 +13,7 @@ makedocs(
         "Contents" => [
             "norms.md",
             "distances.md",
+            "running_stats.md",
             "utilities.md"
         ],
     ],
