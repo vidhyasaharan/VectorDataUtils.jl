@@ -1,8 +1,9 @@
 #Generate a random positive definite matrix
 """
     randposdefmatrix(D)
+    randposdefmatrix(::DataType, D)
 
-Generate a random ``DxD`` positive definite matrix. Use `randposdefmatrix(Float64,D)` or `randposdefmatrix(Float32,D)` to specify Float data type.
+Generate a random ``DxD`` positive definite matrix. `::DataType` can be `Float32` or `Float64`, default is `Float64`.
 """
 function randposdefmatrix(Ftype::DataType, ndim::Int)
     a = randn(Ftype,ndim,ndim)

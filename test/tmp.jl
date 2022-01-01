@@ -6,7 +6,7 @@ using Distances
 
 
 ndim = 20
-npts = 10000
+npts = 1000
 x = randn(Float64,ndim,npts)
 y = randn(Float64,ndim,npts)
 

@@ -10,10 +10,12 @@ export running_mean, running_mean!, update_running_mean!
 export running_meanvar, running_meanvar!, update_running_meanvar!
 export running_meancov, running_meancov!, update_running_meancov!
 export sql2, l2, l1
+export generate_4_clusters, generate_circle_cluster, generate_4_circle_clusters
 
 include("Lp.jl")
 include("quadratic_forms.jl")
 include("running_stats.jl")
 include("distances.jl")
+include("toy_data.jl")
 
 end
