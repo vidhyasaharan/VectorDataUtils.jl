@@ -11,28 +11,10 @@ using Statistics
         ftest = fstring*" Tests"
         @testset "$ftest" begin
             println("Running "*fstring*" Tests")
-            include("L2_tests.jl")
             include("quadratic_forms_tests.jl")
             include("Lp_tests.jl")
             include("running_stats_tests.jl")
             include("distances_tests.jl")
         end 
     end
-
-    # @testset "Float32 Tests" begin
-    #     global Float = Float32
-    #     println("Running "*String(Symbol(Float))*" Tests")
-    #     include("L2_tests.jl")
-    #     include("quadratic_forms_tests.jl")
-    #     include("Lp_tests.jl")
-    #     include("running_stats_tests.jl")
-    # end 
-    # @testset "Float64 Tests" begin
-    #     global Float = Float64
-    #     println("Running "*String(Symbol(Float))*" Tests")
-    #     include("L2_tests.jl")
-    #     include("quadratic_forms_tests.jl")
-    #     include("Lp_tests.jl")
-    #     include("running_stats_tests.jl")
-    # end
 end
