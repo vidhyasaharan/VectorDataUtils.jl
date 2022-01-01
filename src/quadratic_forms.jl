@@ -1,3 +1,17 @@
+#Generate a random positive definite matrix
+"""
+    randposdefmatrix(D)
+
+Generate a random ``DxD`` positive definite matrix. Use `randposdefmatrix(Float64,D)` or `randposdefmatrix(Float32,D)` to specify Float data type.
+"""
+function randposdefmatrix(Ftype::DataType, ndim::Int)
+    a = randn(Ftype,ndim,ndim)
+    A = a*a' + LinearAlgebra.I(ndim)
+    return A
+end
+
+randposdefmatrix(ndim::Int) = randposdefmatrix(Float64,ndim)
+
 #computes Quadratic term - x'Ax
 """
     xAx(x,A)
@@ -12,13 +26,13 @@ function xAx(x::AbstractVector{T}, A::AbstractMatrix{T}) where {T}
     return s
 end
 
-#computes Mahalanobis distance (x-y)'A(x-y)
+#computes Square Mahalanobis distance (x-y)'A(x-y)
 """
-    mahaldist(x,y,A)
+    sqmahaldist(x,y,A)
 
-Compute the Mahalanobis distance between two real vectors `x` and `y` given a square matrix `A`. Dimensions of `x`, `y` and `A` must match. Mahalanobis distance is given by ``(x-y)'A(x-y)``.
+Compute the square of the Mahalanobis distance between two real vectors `x` and `y` given a positive semidefinite matrix `A`. Dimensions of `x`, `y` and `A` must match. Square of the Mahalanobis distance is given by ``(x-y)'A(x-y)``.
 """
-function mahaldist(x::AbstractVector{T}, y::AbstractVector{T}, A::AbstractMatrix{T}) where {T}
+function sqmahaldist(x::AbstractVector{T}, y::AbstractVector{T}, A::AbstractMatrix{T}) where {T}
     s = zero(T)
     @turbo for i ∈ eachindex(x,y), j ∈ eachindex(x,y)
         Ti = x[i] - y[i]
@@ -27,3 +41,11 @@ function mahaldist(x::AbstractVector{T}, y::AbstractVector{T}, A::AbstractMatrix
     end
     return s
 end
+
+
+"""
+    mahaldist(x,y,A)
+
+Compute the Mahalanobis distance between two real vectors `x` and `y` given a positive semidefinite matrix `A`. Dimensions of `x`, `y` and `A` must match. Mahalanobis distance is given by ``sqrt((x-y)'A(x-y))``.
+"""
+mahaldist(x::AbstractVector{T}, y::AbstractVector{T}, A::AbstractMatrix{T}) where {T} = sqrt(sqmahaldist(x,y,A))
