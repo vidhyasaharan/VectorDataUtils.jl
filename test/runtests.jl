@@ -15,6 +15,7 @@ using Statistics
             include("quadratic_forms_tests.jl")
             include("Lp_tests.jl")
             include("running_stats_tests.jl")
+            include("distances_tests.jl")
         end 
     end
 
