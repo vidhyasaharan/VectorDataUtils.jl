@@ -12,6 +12,7 @@ export running_meanvar, running_meanvar!, update_running_meanvar!
 export running_meancov, running_meancov!, update_running_meancov!
 export sql2, l2, l1
 export generate_4_clusters, generate_circle_cluster, generate_4_circle_clusters
+export kmeans, kmeans!, kmpp, kmrand, kmeans_init, closest_centre, closest_centre!, mindist2cntrs
 
 include("Lp.jl")
 include("quadratic_forms.jl")
