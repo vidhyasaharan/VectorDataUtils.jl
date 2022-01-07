@@ -15,6 +15,7 @@ using Statistics
             include("Lp_tests.jl")
             include("running_stats_tests.jl")
             include("distances_tests.jl")
+            include("kmeans_tests.jl")
         end 
     end
 end

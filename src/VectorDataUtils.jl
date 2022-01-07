@@ -2,6 +2,7 @@ module VectorDataUtils
 
 using LoopVectorization
 using LinearAlgebra
+using Distances
 
 export l2inner, l2norm, sql2norm, l2dist, sql2dist
 export l1norm, l1dist
@@ -17,5 +18,7 @@ include("quadratic_forms.jl")
 include("running_stats.jl")
 include("distances.jl")
 include("toy_data.jl")
+include("kmeans.jl")
+include("helper_functions.jl")
 
 end

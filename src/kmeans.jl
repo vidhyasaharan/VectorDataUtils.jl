@@ -1,5 +1,10 @@
 ##k-mean++
 
+#Square Euclidean Function to use (internal sql2() or SqEuclidean() from Distances.jl)
+SqEuDist = SqEuclidean
+# SqEuDist = sql2
+
+
 #Return distance to closest centre for each data point (helper function for k-mean++)
 """
     mindist2cntrs(centres, data)
@@ -16,11 +21,12 @@ function mindist2cntrs(cntrs::AbstractMatrix{T}, data::AbstractMatrix{T}) where 
     mdist = Vector{T}(undef,size(data,2))
     temp = Vector{T}(undef,size(cntrs,2))
     @inbounds @views for i ∈ eachindex(mdist)
-        pairwise!(SqL2(), temp, data[:,i], cntrs)
+        colwise!(temp,SqEuDist(), data[:,i], cntrs)
         mdist[i] = minimum(temp)
     end
     return mdist
 end
+
 
 #k-means++ algorithm for initialising centres
 """
@@ -64,7 +70,7 @@ Identifies the centre closest to each data point based on L2 distance.
 function closest_centre!(ccntr::AbstractVector{Int}, cntrs::AbstractMatrix{T}, data::AbstractMatrix{T}) where T<:AbstractFloat
     temp = Vector{T}(undef,size(cntrs,2))
     @inbounds @views for i ∈ eachindex(ccntr)
-        pairwise!(SqL2(), temp, data[:,i], cntrs)
+        colwise!(temp,SqEuDist(), data[:,i], cntrs)
         ccntr[i] = argmin(temp)
     end
 end
@@ -88,17 +94,25 @@ function closest_centre(cntrs::AbstractMatrix{T}, data::AbstractMatrix{T}) where
     return ccntr
 end
 
+
 #Maximum L2 distance by which a centre has shifted
 function max_centre_shift(new_cntrs::AbstractMatrix{T}, old_cntrs::AbstractMatrix{T}) where T<:AbstractFloat
     s = zero(T)
     @views for i ∈ axes(old_cntrs,2)
-        temp = dist(SqL2(),new_cntrs[:,i],old_cntrs[:,i])
+        temp = evaluate(SqEuDist(),new_cntrs[:,i],old_cntrs[:,i])
         if(temp>s)
             s = temp
         end
     end
     return sqrt(s)
 end
+
+
+function max_centre_shift2(new_cntrs::AbstractMatrix{T}, old_cntrs::AbstractMatrix{T}) where T<:AbstractFloat
+    temp = colwise(SqEuDist(),new_cntrs,old_cntrs)
+    return sqrt(maximum(temp))
+end
+
 
 #k-means initialisation
 abstract type KMinit end
@@ -132,7 +146,7 @@ end
 
 
 """
-    kmeans!(centres, data, number_of_centres; [update_threshold = 0.0])
+    kmeans!(centres, data; [update_threshold = 0.0])
 
 Updates (inplace) cluster centres `centres` using the k-means clustering algorithm based on `data`.
 Cluster centres are iteratively updated until the largest shift in cluster centres,
@@ -141,7 +155,7 @@ measured in terms of square of L2 distance, falls below `update_threshold`.
 * `data` must be a matrix of `Float` with each column representing a point
 * Default value of optional named parameter is `update_threshold = 0.0` and corresponds to the setting that algorithm will converge when cluster centres do not shift
 """
-function kmeans!(cntrs::AbstractMatrix{T}, data::AbstractMatrix{T}; update_threshold::Float = 0.0) where T<:AbstractFloat
+function kmeans!(cntrs::AbstractMatrix{T}, data::AbstractMatrix{T}; update_threshold = 0.0) where T<:AbstractFloat
     ndims,ncntrs = size(cntrs)
     old_cntrs = Matrix{T}(undef,ndims,ncntrs)
     ccntr = Vector{Int}(undef,size(data,2))
@@ -166,10 +180,10 @@ measured in terms of square of L2 distance, falls below `update_threshold`.
 * Use `kmpp()` as `initialise_method` to use k-mean++ as initialisation method [DEFAULT if `initialise_method` is not specified]
 * Use `kmrand()` as `intialise_method` to randomly select points as initial centres. This can be faster than k-means++ for large datasets
 """
-function kmeans(data::AbstractMatrix{T}, ncntrs::Int, init_method::KMinit; update_threshold::Float = 0.0) where T<:AbstractFloat
+function kmeans(data::AbstractMatrix{T}, ncntrs::Int, init_method::KMinit; update_threshold = 0.0) where T<:AbstractFloat
     cntrs = kmeans_init(init_method, data, ncntrs)
     kmeans!(cntrs, data; update_threshold)
     return cntrs
 end
 
-kmeans(data::AbstractMatrix{T}, ncntrs::Int; update_threshold::Float = 0.0) where T<:AbstractFloat = kmeans(data, ncntrs, kmpp(); update_threshold)
+kmeans(data::AbstractMatrix{T}, ncntrs::Int; update_threshold = 0.0) where T<:AbstractFloat = kmeans(data, ncntrs, kmpp(); update_threshold)
