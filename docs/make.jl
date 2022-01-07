@@ -14,6 +14,7 @@ makedocs(
             "norms.md",
             "distances.md",
             "running_stats.md",
+            "kmeans.md",
             "utilities.md"
         ],
     ],

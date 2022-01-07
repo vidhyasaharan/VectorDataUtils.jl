@@ -10,4 +10,5 @@ Currently VectorDataUtils.jl implements routines for:
 - [Norms and Inner Products](norms.md)
 - [Distances](distances.md)
 - [Running Statistics](running_stats.md)
+- [K-means Clustering](kmeans.md)
 - [Utilities](utilities.md)
