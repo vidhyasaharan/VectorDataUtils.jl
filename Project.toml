@@ -1,7 +1,7 @@
 name = "VectorDataUtils"
 uuid = "b8726570-0eb3-433b-9cc6-91142bdc3397"
 authors = ["Vidhyasaharan Sethu"]
-version = "0.1.0"
+version = "0.1.2"
 
 [deps]
 Distances = "b4f34e82-e78d-54a5-968a-f98e89d6e8f7"
