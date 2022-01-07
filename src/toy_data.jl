@@ -33,7 +33,7 @@ function generate_4_circle_clusters(T::DataType, npts_per_cluster::Int = 8; r = 
     for i ∈ axes(c,2)
         sindx = (i-1)*npts_per_cluster+1
         eindx = i*npts_per_cluster
-        pts = generate_circle_cluster(npts_per_cluster)
+        pts = generate_circle_cluster(T, npts_per_cluster)
         data[:,sindx:eindx] = r*pts .+ c[:,i]
     end
     return data
